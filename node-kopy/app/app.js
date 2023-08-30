@@ -6,6 +6,11 @@ app.get("/hello", (req, res) => {
   res.send({ serverTime: 123123123123000 });
 });
 
+app.post("/posttest", (req, res) => {
+  console.log(req)
+  res.send({ text: "Successfully registered!" });
+});
+
 app.listen(port, () => {
   console.log(`Example app listening on port ${port}`);
 });
