@@ -16,7 +16,7 @@ export const ExchangeInfo = () => {
     // }, [])
 
     useEffect(() => {
-        fetch("127.0.0.1:3000/hello").then(res => res.json()).then(info => setInfo(info));
+        fetch("http://127.0.0.1:3000/hello").then(res => res.json()).then(info => setInfo(info));
     }, [])
 
     const clickHandler = () => {
