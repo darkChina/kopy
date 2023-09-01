@@ -1,14 +1,13 @@
 import { useState, useEffect } from "react";
 
-type info = {
+type time = {
   serverTime?: "number";
 };
 
 export const ExchangeInfo = () => {
-  const counterResult: number = 0;
-  const infoObj: info = {};
-  const [counter, setCounter] = useState(counterResult);
-  const [info, setInfo] = useState(infoObj);
+  const timeObj: time = {};
+  const [time, setTime] = useState(timeObj);
+  const [text, setText] = useState("");
 
   // useEffect(() => {
   //     fetch("https://api.binance.com/api/v3/exchangeInfo").then(res => res.json()).then(info => setInfo(info));
@@ -17,22 +16,25 @@ export const ExchangeInfo = () => {
   useEffect(() => {
     fetch("http://127.0.0.1:3000/hello")
       .then((res) => res.json())
-      .then((info) => setInfo(info));
+      .then((time) => setTime(time));
   }, []);
 
-  const clickHandler = () => {
+  const clickHandler = async () => {
     const requestOptions = {
       method: "POST",
+      //mode: 'cors',
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ title: "React POST Request Example" }),
     };
-    fetch("http://127.0.0.1:3000/posttest", requestOptions).then(res => console.log(res));
+    await fetch("http://127.0.0.1:3000/hello", requestOptions).then((res) =>
+      console.log(res)
+    );
   };
 
   return (
     <div>
-      <h1>Counter: {counter}</h1>
-      <h2>{info.serverTime}</h2>
+      <h1>{time.serverTime}</h1>
+      <h2>{text}</h2>
       <button onClick={clickHandler}>Add two!</button>
     </div>
   );

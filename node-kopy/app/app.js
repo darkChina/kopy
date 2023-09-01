@@ -1,14 +1,18 @@
 const express = require("express");
+const bodyParser = require('body-parser')
+const cors = require("cors");
 const app = express();
 const port = 3000;
 
+app.use(cors());
+app.use(bodyParser.json());
+
 app.get("/hello", (req, res) => {
-  res.send({ serverTime: 123123123123000 });
+  res.send({ serverTime: Date.now() });
 });
 
-app.post("/posttest", (req, res) => {
-  console.log(req)
-  res.send({ text: "Successfully registered!" });
+app.post("/hello", (req, res) => {
+  res.status(200).send({ text: "Successfully registered!" });
 });
 
 app.listen(port, () => {
