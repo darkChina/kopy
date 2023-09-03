@@ -1,6 +1,6 @@
 import "./styles.css";
-import { ExchangeInfo } from "./components/exchangeInfo";
+import Test from "./components/testComponent";
 
 export const App = () => {
-  return <ExchangeInfo />;
+  return <Test />;
 };
