@@ -1,4 +1,6 @@
 const User = require("../models/User.js");
+const bcrypt = require("bcrypt");
+const jwt = require("jsonwebtoken");
 
 const getAllUsers = (req, res, next) => {
   User.find()
@@ -25,24 +27,50 @@ const getUser = (req, res, next) => {
     });
 };
 
-const addUser = (req, res, next) => {
-  let user = new User({
-    name: req.body.name,
-    email: req.body.email,
-  });
-  user
-    .save()
-    .then(() => {
-      res.json({
-        message: "User is added to db",
+const registerUser = (req, res, next) => {
+  bcrypt
+    .hash(req.body.password, 10)
+    .then((hashedPassword) => {
+      const user = new User({
+        name: req.body.name,
+        password: hashedPassword,
       });
+      user
+        .save()
+        .then((result) => {
+          res.status(201).json({
+            result,
+          });
+        })
+        .catch((err) => {
+          res.status(500).json({
+            message: `Error caught: ${err}`,
+          });
+        });
     })
-    .catch((err) => {
-      res.json({
-        message: `Error caught: ${err}`,
+    .catch((error) => {
+      res.status(500).send({
+        message: "Password was not hashed successfully",
+        error,
       });
     });
 };
+
+const loginUser = (req, res, next) => {
+  console.log(req.body.name);
+  User.findOne({ name: req.body.name })
+    .then(() => {
+      res.status(200).send({
+        message: "Name found"
+      });
+    })
+    .catch((e) => {
+      res.status(404).send({
+        message: "Name not found",
+        e,
+      });
+    });
+}
 
 const updateUser = (req, res, next) => {
   let userID = req.body.userID;
@@ -66,26 +94,26 @@ const updateUser = (req, res, next) => {
 };
 
 const removeUser = (req, res, next) => {
-    let userID = req.body.userID;
-  
-    User.findByIdAndRemove(userID)
-      .then(() => {
-        res.json({
-          message: `User ${userID} is removed`,
-        });
-      })
-      .catch((err) => {
-        res.json({
-          message: `Error caught: ${err}`,
-        });
-      });
-  };
+  let userID = req.body.userID;
 
+  User.findByIdAndRemove(userID)
+    .then(() => {
+      res.json({
+        message: `User ${userID} is removed`,
+      });
+    })
+    .catch((err) => {
+      res.json({
+        message: `Error caught: ${err}`,
+      });
+    });
+};
 
 module.exports = {
-    getAllUsers,
-    getUser,
-    addUser,
-    updateUser,
-    removeUser
-}
+  getAllUsers,
+  getUser,
+  updateUser,
+  removeUser,
+  registerUser,
+  loginUser
+};

@@ -1,7 +1,7 @@
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
-const dealSchema = new Schema(
+const DealSchema = new Schema(
   {
     dealID: {
       type: Number,
@@ -33,7 +33,7 @@ const dealSchema = new Schema(
   { timestamps: true }
 );
 
-const Deal = mongoose.model("Deal", dealSchema);
+const Deal = mongoose.model("Deal", DealSchema);
 module.exports = Deal;
 /*
 
