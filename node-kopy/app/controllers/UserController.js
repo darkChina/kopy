@@ -57,12 +57,37 @@ const registerUser = (req, res, next) => {
 };
 
 const loginUser = (req, res, next) => {
-  console.log(req.body.name);
   User.findOne({ name: req.body.name })
-    .then(() => {
-      res.status(200).send({
-        message: "Name found"
-      });
+    .then((user) => {
+      bcrypt
+        .compare(req.body.password, user.password)
+        .then((passwordCheck) => {
+          if (!passwordCheck) {
+            res.status(400).send({
+              message: "Passwords does not match",
+            });
+          }
+
+          const token = jwt.sign(
+            {
+              userId: user._id,
+              userName: user.name,
+            },
+            "RANDOM-TOKEN",
+            { expiresIn: "24h" }
+          );
+
+          res.status(200).send({
+            message: "Login Successful",
+            name: user.name,
+            token,
+          });
+        })
+        .catch(() => {
+          res.status(400).send({
+            message: "Passwords does not match",
+          });
+        });
     })
     .catch((e) => {
       res.status(404).send({
@@ -70,7 +95,7 @@ const loginUser = (req, res, next) => {
         e,
       });
     });
-}
+};
 
 const updateUser = (req, res, next) => {
   let userID = req.body.userID;
@@ -115,5 +140,5 @@ module.exports = {
   updateUser,
   removeUser,
   registerUser,
-  loginUser
+  loginUser,
 };

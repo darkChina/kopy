@@ -22,3 +22,6 @@ app.use("/api/user", UserRouter);
 app.listen(port, () => {
   console.log(`REST is listening on port ${port}`);
 });
+
+
+//https://www.freecodecamp.org/news/how-to-build-a-fullstack-authentication-system-with-react-express-mongodb-heroku-and-netlify/#how-to-create-the-users-model
