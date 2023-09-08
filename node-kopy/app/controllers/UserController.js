@@ -64,7 +64,7 @@ const loginUser = (req, res, next) => {
         .then((passwordCheck) => {
           if (!passwordCheck) {
             res.status(400).send({
-              message: "Passwords does not match",
+              message: "Passwords does not match - If block", //ошибка при неправильном пароле
             });
           }
 
