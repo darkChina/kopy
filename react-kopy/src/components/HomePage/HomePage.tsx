@@ -19,5 +19,12 @@ const data = [
 ];
 
 export const HomePage = () => {
-  return <Strategies strategies={data} />;
+  return (
+    <div>
+      <h1>Homepage</h1>
+      <h2>Strategies</h2>
+      <Strategies strategies={data} />
+      <h2>My trades</h2>
+    </div>
+  );
 };

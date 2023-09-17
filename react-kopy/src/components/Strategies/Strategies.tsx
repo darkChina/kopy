@@ -1,5 +1,5 @@
 import Table from "react-bootstrap/Table";
-
+import { StrategyComponent } from "./StrategyComponent";
 
 interface Strategy {
   name: string;
@@ -10,9 +10,11 @@ interface Strategy {
 export const Strategies = (props: any) => {
   const strategies = props.strategies;
   return (
-    <Table striped bordered hover>
+    <Table bordered hover>
       <thead>
         <tr>
+          <th>#</th>
+          <th>#</th>
           <th>Name</th>
           <th>Risk Score</th>
           <th>Investors</th>
@@ -21,11 +23,7 @@ export const Strategies = (props: any) => {
       <tbody>
         {strategies.map((strategy: Strategy) => {
           return (
-            <tr>
-              <td>{strategy.name}</td>
-              <td>{strategy.risk}</td>
-              <td>{strategy.investors}</td>
-            </tr>
+            <StrategyComponent strategy={strategy} />
           );
         })}
       </tbody>
