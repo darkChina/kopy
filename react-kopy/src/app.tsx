@@ -1,7 +1,6 @@
 import "./styles.css";
 
 import { LoginPage } from "./components/LoginPage/LoginPage.tsx";
-import { HomePage } from "./components/HomePage/HomePage.tsx";
 
 export const App = () => {
   return <LoginPage />;

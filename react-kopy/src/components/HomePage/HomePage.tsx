@@ -1,8 +1,23 @@
+import { Strategies } from "../Strategies/Strategies";
+
+const data = [
+  {
+    name: "Alex",
+    risk: 9,
+    investors: 90,
+  },
+  {
+    name: "Jane",
+    risk: 7,
+    investors: 230,
+  },
+  {
+    name: "Kot",
+    risk: 1,
+    investors: 2390,
+  },
+];
+
 export const HomePage = () => {
-  return (
-    <div>
-      <h1>This is a home page</h1>
-      <p>Some home page text here...</p>
-    </div>
-  );
+  return <Strategies strategies={data} />;
 };

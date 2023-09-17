@@ -1,5 +1,4 @@
 import { useState, useEffect } from "react";
-import UserComponent from "../User/User";
 
 interface User {
   _id: string;
