@@ -3,30 +3,26 @@ const Schema = mongoose.Schema;
 
 const DealSchema = new Schema(
   {
-    dealID: {
-      type: Number,
-    },
-    symbol: {
-      type: String,
-    },
-    side: {
-      type: String,
-    },
-    volume: {
+    login: {
       type: Number,
     },
     openTime: {
       type: Date,
       default: Date.now,
     },
+    symbol: {
+      type: String,
+    },
+    direction: {
+      type: String,
+    },
+    volume: {
+      type: Number,
+    },
     openPrice: {
       type: Number,
     },
-    closeTime: {
-      type: Date,
-      default: Date.now,
-    },
-    closePrice: {
+    profit: {
       type: Number,
     },
   },

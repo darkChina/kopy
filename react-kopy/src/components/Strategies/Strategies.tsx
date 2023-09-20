@@ -23,7 +23,7 @@ export const Strategies = (props: any) => {
       <tbody>
         {strategies.map((strategy: Strategy) => {
           return (
-            <StrategyComponent strategy={strategy} />
+            <StrategyComponent key={strategy.name} strategy={strategy} />
           );
         })}
       </tbody>

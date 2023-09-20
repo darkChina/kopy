@@ -10,13 +10,13 @@ const cors = require("cors");
 const dbConnect = require("./db/dbConnect.js");
 const port = 3000;
 
-const UserRouter = require("./routes/user.js");
+const Router = require("./routes/router.js");
 
 dbConnect();
 
 app.use(cors());
 app.use(bodyParser.json());
-app.use("/api/user", UserRouter);
+app.use("/api", Router);
 
 
 app.listen(port, () => {

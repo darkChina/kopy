@@ -33,6 +33,7 @@ const registerUser = (req, res, next) => {
     .then((hashedPassword) => {
       const user = new User({
         name: req.body.name,
+        login: (Math.pow(Math.random(), Math.random()) * 10000000).toFixed(0),
         password: hashedPassword,
       });
       user

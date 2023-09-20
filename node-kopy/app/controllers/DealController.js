@@ -1,5 +1,30 @@
 const Deal = require("../models/Deal.js");
 
+const getDealsByLogin = (req, res, next) => {
+  Deal.find({login: req.body.login})
+    .then((deals) => {
+      res.json({
+        deals,
+      });
+    })
+    .catch((err) => {
+      res.json({
+        message: `Error caught: ${err}`,
+      });
+    });
+};
+
+// const getUser = (req, res, next) => {
+//   let userID = req.body.userID;
+//   User.findById(userID)
+//     .then((response) => res.json(response))
+//     .catch((err) => {
+//       res.json({
+//         message: `Error caught: ${err}`,
+//       });
+//     });
+// };
+
 // const getAllUsers = (req, res, next) => {
 //   User.find()
 //     .then((users) => {
@@ -67,7 +92,7 @@ const Deal = require("../models/Deal.js");
 
 // const removeUser = (req, res, next) => {
 //     let userID = req.body.userID;
-  
+
 //     User.findByIdAndRemove(userID)
 //       .then(() => {
 //         res.json({
@@ -81,11 +106,6 @@ const Deal = require("../models/Deal.js");
 //       });
 //   };
 
-
-// module.exports = {
-//     getAllUsers,
-//     getUser,
-//     addUser,
-//     updateUser,
-//     removeUser
-// }
+module.exports = {
+    getDealsByLogin,
+};
