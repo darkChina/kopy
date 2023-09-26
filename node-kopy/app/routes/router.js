@@ -1,21 +1,23 @@
 const express = require("express");
 const router = express.Router();
 
-const UserController = require("../controllers/UserController");
-const DealController = require("../controllers/DealController");
-const StrategyController = require("../controllers/StrategyController");
+const UserController = require("../db/controllers/UserController");
+const UserPositionController = require("../db/controllers/UserPositionController");
+const StrategyController = require("../db/controllers/StrategyController");
+const StrategyPositionController = require("../db/controllers/StrategyPositionController");
 const auth = require("../auth");
 
-router.get("/user/", UserController.getAllUsers);
-router.post("/user/show", UserController.getUser);
-router.post("/user/update", UserController.updateUser);
-router.post("/user/remove", UserController.removeUser);
-router.post("/user/register", UserController.registerUser);
-router.post("/user/login", UserController.loginUser);
+router.get("/users/", UserController.getAllUsers);
+router.post("/users/show", UserController.getUser);
+router.post("/users/update", UserController.updateUser);
+router.post("/users/remove", UserController.removeUser);
+router.post("/users/register", UserController.registerUser);
+router.post("/users/login", UserController.loginUser);
 
-router.post("/deals/get", DealController.getDealsByLogin);
+router.post("/positions/get", UserPositionController.getPositionsByLogin);
 
 router.get("/strategies/get", StrategyController.getStrategies);
+router.post("/strategies/positions/get", StrategyPositionController.getPositionsByStrategy);
 
 
 // router.get("/auth-endpoint", auth, (req, res) => {

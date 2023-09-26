@@ -19,7 +19,7 @@ const LoginForm = () => {
         password,
       }),
     };
-    fetch("http://127.0.0.1:3000/api/user/login", requestOptions)
+    fetch("http://127.0.0.1:3000/api/users/login", requestOptions)
       .then((res) => res.json())
       .then((data) => {
         setToken(data.token);

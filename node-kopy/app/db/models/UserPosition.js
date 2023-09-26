@@ -1,7 +1,7 @@
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
-const DealSchema = new Schema(
+const UserPositionSchema = new Schema(
   {
     login: {
       type: Number,
@@ -29,12 +29,5 @@ const DealSchema = new Schema(
   { timestamps: true }
 );
 
-const Deal = mongoose.model("Deal", DealSchema);
-module.exports = Deal;
-/*
-
-openTime
-openPrice
-closeTime
-closePrice
-*/
+const UserPosition = mongoose.model("users_positions", UserPositionSchema);
+module.exports = UserPosition;

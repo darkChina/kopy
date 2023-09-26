@@ -1,10 +1,10 @@
-const Deal = require("../models/Deal.js");
+const StrategyPosition = require("../models/StrategyPosition.js");
 
-const getDealsByLogin = (req, res, next) => {
-  Deal.find({login: req.body.login})
-    .then((deals) => {
+const getPositionsByStrategy = (req, res, next) => {
+  StrategyPosition.find({login: req.body.login})
+    .then((positions) => {
       res.json({
-        deals,
+        positions,
       });
     })
     .catch((err) => {
@@ -107,5 +107,5 @@ const getDealsByLogin = (req, res, next) => {
 //   };
 
 module.exports = {
-    getDealsByLogin,
+  getPositionsByStrategy,
 };
