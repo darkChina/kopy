@@ -6,7 +6,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 
 const LoginForm = () => {
   const [token, setToken] = useState("");
-  const [name, setName] = useState("");
+  const [login, setLogin] = useState("");
   const [password, setPassword] = useState("");
 
   const onSubmitHandler = (event: any) => {
@@ -15,7 +15,7 @@ const LoginForm = () => {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
-        name,
+        login,
         password,
       }),
     };
@@ -29,9 +29,9 @@ const LoginForm = () => {
       });
   };
 
-  const onNameChangeHandler = (event: any) => {
+  const onLoginChangeHandler = (event: any) => {
     event.preventDefault();
-    setName(event.target.value);
+    setLogin(event.target.value);
   };
 
   const onPasswordChangeHandler = (event: any) => {
@@ -42,11 +42,11 @@ const LoginForm = () => {
     return (
       <Form>
         <Form.Group className="mb-3" controlId="formBasicName">
-          <Form.Label>Name</Form.Label>
+          <Form.Label>Login</Form.Label>
           <Form.Control
             type="text"
-            placeholder="Enter name"
-            onChange={onNameChangeHandler}
+            placeholder="Enter login"
+            onChange={onLoginChangeHandler}
           />
         </Form.Group>
 
@@ -69,7 +69,7 @@ const LoginForm = () => {
     );
   }
   return (
-   <HomePage />
+   <HomePage login={login}/>
   );
 };
 

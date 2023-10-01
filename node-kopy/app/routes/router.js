@@ -5,6 +5,7 @@ const UserController = require("../db/controllers/UserController");
 const UserPositionController = require("../db/controllers/UserPositionController");
 const StrategyController = require("../db/controllers/StrategyController");
 const StrategyPositionController = require("../db/controllers/StrategyPositionController");
+const SubscriptionController = require("../db/controllers/SubscriptionController");
 const auth = require("../auth");
 
 router.get("/users/", UserController.getAllUsers);
@@ -18,6 +19,8 @@ router.post("/positions/get", UserPositionController.getPositionsByLogin);
 
 router.get("/strategies/get", StrategyController.getStrategies);
 router.post("/strategies/positions/get", StrategyPositionController.getPositionsByStrategy);
+
+router.post("/subscriptions/create", SubscriptionController.createSubscription);
 
 
 // router.get("/auth-endpoint", auth, (req, res) => {

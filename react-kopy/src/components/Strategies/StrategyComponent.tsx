@@ -21,9 +21,14 @@ export const StrategyComponent = (props: any) => {
       });
   }
 
+
+ const onFollowingHandler = () => {
+  
+ }
+
   return (
     <tr>
-      <td><Button variant="success">Follow</Button></td>
+      <td><Button variant="success" onClick={onFollowingHandler}>Follow</Button></td>
       <td><Button variant="info" onClick={onPositionsHandler}>Positions</Button></td>
       <td>{props.strategy.login}</td>
       <td>{props.strategy.name}</td>
