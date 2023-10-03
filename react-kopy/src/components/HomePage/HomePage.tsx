@@ -23,10 +23,10 @@ export const HomePage = (props: any) => {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({
-            login: 123
+            login: props.login
           }),
         };
-        fetch("http://127.0.0.1:3000/api/strategies/positions/get", requestOptions)
+        fetch("http://127.0.0.1:3000/api/positions/get", requestOptions)
           .then((res) => res.json())
           .then((data) => {
             setFollowerPositions(data.positions);
@@ -34,7 +34,7 @@ export const HomePage = (props: any) => {
           .catch((error) => {
             console.log(error);
           });
-    }, 5000);
+    }, 2000);
     return () => clearInterval(interval);
   }, []);
 

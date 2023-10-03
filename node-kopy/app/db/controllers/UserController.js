@@ -32,8 +32,8 @@ const registerUser = (req, res, next) => {
     .hash(req.body.password, 10)
     .then((hashedPassword) => {
       const user = new User({
-        name: req.body.name,
-        login: (Math.pow(Math.random(), Math.random()) * 10000000).toFixed(0),
+        login: req.body.login,
+        //login: (Math.pow(Math.random(), Math.random()) * 10000000).toFixed(0),
         password: hashedPassword,
       });
       user
@@ -58,7 +58,7 @@ const registerUser = (req, res, next) => {
 };
 
 const loginUser = (req, res, next) => {
-  User.findOne({ name: req.body.name })
+  User.findOne({ login: req.body.login })
     .then((user) => {
       bcrypt
         .compare(req.body.password, user.password)
@@ -72,7 +72,7 @@ const loginUser = (req, res, next) => {
           const token = jwt.sign(
             {
               userId: user._id,
-              userName: user.name,
+              userLogin: user.login,
             },
             "RANDOM-TOKEN",
             { expiresIn: "24h" }
@@ -80,7 +80,7 @@ const loginUser = (req, res, next) => {
 
           res.status(200).send({
             message: "Login Successful",
-            name: user.name,
+            login: user.login,
             token,
           });
         })
@@ -92,7 +92,7 @@ const loginUser = (req, res, next) => {
     })
     .catch((e) => {
       res.status(404).send({
-        message: "Name not found",
+        message: "Login not found",
         e,
       });
     });
@@ -102,7 +102,7 @@ const updateUser = (req, res, next) => {
   let userID = req.body.userID;
 
   let updatedData = {
-    name: req.body.name,
+    login: req.body.login,
     email: req.body.email,
   };
 

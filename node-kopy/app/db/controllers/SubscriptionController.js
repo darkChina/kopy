@@ -3,8 +3,8 @@ const Subscription = require("../models/Subscription.js");
 const createSubscription = (req, res, next) => {
   const subscription = new Subscription({
     subscriptionId: (Math.pow(Math.random(), Math.random()) * 10000000).toFixed(0),
-    strategyId: 123,
-    followerId: 1,
+    strategyId: req.body.strategy,
+    followerId: req.body.follower
   });
 
   subscription

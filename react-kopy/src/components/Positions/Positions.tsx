@@ -3,6 +3,8 @@ import { PositionComponent } from "./PositionComponent";
 
 
 interface Position {
+  _id: string;
+  login: number;
   openTime: string;
   symbol: string;
   direction: string;
@@ -27,7 +29,7 @@ export const Positions = (props: any) => {
       <tbody>
         {positions.map((position: Position) => {
           return (
-            <PositionComponent key={position.symbol} position={position} />
+            <PositionComponent key={position._id} position={position} />
           );
         })}
       </tbody>

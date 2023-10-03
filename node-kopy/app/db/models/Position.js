@@ -1,7 +1,7 @@
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
-const UserPositionSchema = new Schema(
+const PositionSchema = new Schema(
   {
     login: {
       type: Number,
@@ -29,5 +29,5 @@ const UserPositionSchema = new Schema(
   { timestamps: true }
 );
 
-const UserPosition = mongoose.model("users_positions", UserPositionSchema);
-module.exports = UserPosition;
+const Position = mongoose.model("positions", PositionSchema);
+module.exports = Position;

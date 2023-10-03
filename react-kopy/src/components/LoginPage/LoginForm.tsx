@@ -19,14 +19,22 @@ const LoginForm = () => {
         password,
       }),
     };
-    fetch("http://127.0.0.1:3000/api/users/login", requestOptions)
-      .then((res) => res.json())
-      .then((data) => {
-        setToken(data.token);
-      })
-      .catch((error) => {
-        console.log(error);
-      });
+
+    fetch("http://127.0.0.1:3000/api/users/login", requestOptions).then(
+      (res: any) => {
+        if (res.status == 200) {
+          res
+            .json()
+            .then((data: any) => {
+              console.log(data);
+              setToken(data.token);
+            })
+            .catch((error: any) => {
+              console.log(error);
+            });
+        }
+      }
+    );
   };
 
   const onLoginChangeHandler = (event: any) => {
@@ -68,9 +76,7 @@ const LoginForm = () => {
       </Form>
     );
   }
-  return (
-   <HomePage login={login}/>
-  );
+  return <HomePage login={login} />;
 };
 
 export default LoginForm;

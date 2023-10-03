@@ -4,7 +4,9 @@ dotenv.config();
 
 const dbConnect = async () => {
   mongoose
-    .connect(process.env.MONGODB_DB_ADDRESS)
+    .connect(process.env.MONGODB_DB_ADDRESS, {
+      autoIndex: true,
+    })
     .then(() => {
       console.log("Successfully connected to MongoDB!");
     })
